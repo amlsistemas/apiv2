@@ -1,24 +1,24 @@
 <?php 
-session_start(); 
-include_once('conexion.php');
+session_start(); //Inicia o reanuda la sesion actual
+include_once('conexion.php'); //Es el archivo que contiene la conexion a la BD
 
-$message = "";
+$message = ""; //Variable para almacenar el mensaje de alerta
 
 
 // Code for login 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $email= $_POST['email'];
-    $password=$_POST['password'];
+if($_SERVER['REQUEST_METHOD'] == 'POST'){ //Verifica si el formulario se ha enviado mediante el metodo POST
+    $email= $_POST['email']; //Se obtiene el valor del email
+    $password=$_POST['password']; //Obtiene el valor de la contraseña
 
-    $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
-    $result = $conn->query($sql);
+    $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'"; //Verifica una coincidencia con los datos anteriores en BD
+    $result = $conn->query($sql); //Ejecuta consulta
 
-    if($result->num_rows > 0){
-        $_SESSION['loggedin']= true;
-        $message = "Inicio de sesión exitoso";
+    if($result->num_rows > 0){ //Verifica si encuentra al menos una fila en el resultado de la consulta, si es así, se concidera exitoso
+        $_SESSION['loggedin']= true; //Indica que el usuario ha iniciado sesión
+        $message = "Inicio de sesión exitoso"; //Mensaje de inicio de sesion exitoso
         //header("refresh:2;url=welcome.php");
      } else {
-        $message = "Usuario o contraseña incorrecta";
+        $message = "Usuario o contraseña incorrecta"; // Mensaje de error
     }
 }
 ?>

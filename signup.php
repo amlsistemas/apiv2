@@ -1,8 +1,8 @@
 <?php 
-session_start();
-require_once('conexion.php');
+session_start(); //Inicia o reanuda la sesion actual
+require_once('conexion.php'); //Es el archivo que contiene la conexion a la BD
 
-$message = "";
+$message = ""; //Variable para almacenar el mensaje de alerta
 
 //Code for Registration 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){ //Verifica si el formulario se ha enviado con el metodo POST
